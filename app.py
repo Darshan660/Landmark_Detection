@@ -7,6 +7,22 @@ import pandas as pd
 from geopy.geocoders import Nominatim
 import os
 
+def add_bg_from_local(image_files):
+    with open(image_files[0], "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read())
+    st.markdown(
+    """
+    <style>
+      .stApp {
+          background-image: url(data:image/png;base64,"""+encoded_string.decode()+""");
+          background-size: cover;
+      }
+    </style>"""
+    ,
+    unsafe_allow_html=True
+    )
+add_bg_from_local([r'D:\College\SEM 6\Projects\Whatsapp Chat Analyzer\whatsapp-chat-analyzer\image_files\dark.png'])
+
 model_url = 'https://tfhub.dev/google/on_device_vision/classifier/landmarks_classifier_asia_V1/1'
 # model_url = 'on_device_vision_classifier_landmarks_classifier_asia_V1_1'
 
