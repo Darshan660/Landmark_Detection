@@ -26,7 +26,7 @@ def add_bg_from_local(image_files):
           background-size: cover;
       }
       .css-1avcm0n.e8zbici2 {
-        background-image: url(data:image/png;base64,"""+encoded_string2.decode()+""");
+        background-image: url(data:image/png;base64,"""+encoded_string1.decode()+""");
         background-size: cover;
         background-repeat: no-repeat;
       }
