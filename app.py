@@ -39,7 +39,7 @@ def run():
     st.image(img)
     img_file = st.file_uploader("Choose your Image", type=['png', 'jpg'])
     if img_file is not None:
-        save_image_path = './Uploaded_Images/' + img_file.name
+        save_image_path = img_file.name
         with open(save_image_path, "wb") as f:
             f.write(img_file.getbuffer())
         result_placeholder = st.empty()
