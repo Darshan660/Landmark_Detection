@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 from geopy.geocoders import Nominatim
 import os
+import base64
 
 # --- GENERAL SETTINGS ---
 PAGE_TITLE = "Landmark Detection"
