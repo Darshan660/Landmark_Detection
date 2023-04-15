@@ -16,6 +16,8 @@ st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
 def add_bg_from_local(image_files):
     with open(image_files[0], "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
+    with open(image_files[1], "rb") as image_file:
+        encoded_string1 = base64.b64encode(image_file.read())
     st.markdown(
     """
     <style>
@@ -23,11 +25,16 @@ def add_bg_from_local(image_files):
           background-image: url(data:image/png;base64,"""+encoded_string.decode()+""");
           background-size: cover;
       }
+      .css-1avcm0n.e8zbici2 {
+        background-image: url(data:image/png;base64,"""+encoded_string2.decode()+""");
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
     </style>"""
     ,
     unsafe_allow_html=True
     )
-add_bg_from_local([r'dark.png'])
+add_bg_from_local([r'dark.png',r'dark.png'])
 
 model_url = 'https://tfhub.dev/google/on_device_vision/classifier/landmarks_classifier_asia_V1/1'
 # model_url = 'on_device_vision_classifier_landmarks_classifier_asia_V1_1'
