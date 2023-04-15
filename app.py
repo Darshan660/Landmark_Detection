@@ -5,7 +5,7 @@ import tensorflow_hub as hub
 import numpy as np
 import pandas as pd
 from geopy.geocoders import Nominatim
-
+import os
 
 model_url = 'https://tfhub.dev/google/on_device_vision/classifier/landmarks_classifier_asia_V1/1'
 # model_url = 'on_device_vision_classifier_landmarks_classifier_asia_V1_1'
@@ -32,6 +32,10 @@ def get_map(loc):
     location = geolocator.geocode(loc)
     return location.address,location.latitude, location.longitude
 
+# Create a directory to save uploaded files
+UPLOAD_DIR = "uploads"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
 def run():
     st.title("Landmark Recognition")
     img = PIL.Image.open('logo.png')
@@ -39,7 +43,7 @@ def run():
     st.image(img)
     img_file = st.file_uploader("Choose your Image", type=['png', 'jpg'])
     if img_file is not None:
-        save_image_path = img_file.name
+        save_image_path = os.path.join(UPLOAD_DIR, img_file.name)
         with open(save_image_path, "wb") as f:
             f.write(img_file.getbuffer())
         result_placeholder = st.empty()
