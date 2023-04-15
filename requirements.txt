@@ -1,7 +1,7 @@
-streamlit
-numpy
-Pillow
-pandas
-geopy
+streamlit==1.21.0
+numpy==1.23.5
+Pillow==9.5.0
+pandas==1.5.3
+geopy==2.3.0
 tensorflow==2.6.0
 tensorflow_hub==0.13.0
