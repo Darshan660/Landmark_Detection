@@ -7,6 +7,11 @@ import pandas as pd
 from geopy.geocoders import Nominatim
 import os
 
+# --- GENERAL SETTINGS ---
+PAGE_TITLE = "Landmark Detection"
+PAGE_ICON = "https://www.gstatic.com/webp/gallery/2.jpg"
+st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
+
 def add_bg_from_local(image_files):
     with open(image_files[0], "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
@@ -21,7 +26,7 @@ def add_bg_from_local(image_files):
     ,
     unsafe_allow_html=True
     )
-add_bg_from_local([r'D:\College\SEM 6\Projects\Whatsapp Chat Analyzer\whatsapp-chat-analyzer\image_files\dark.png'])
+add_bg_from_local([r'dark.png'])
 
 model_url = 'https://tfhub.dev/google/on_device_vision/classifier/landmarks_classifier_asia_V1/1'
 # model_url = 'on_device_vision_classifier_landmarks_classifier_asia_V1_1'
