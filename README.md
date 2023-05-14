@@ -10,3 +10,6 @@
 - It will give you the full address of Landmark
 - It will provide you the `Latitude` & `Longitude` of predicted landmark.
 - It will plot the predicted landmark on the Map.
+
+## Link for the project
+You can view the app here: https://darshans-project-landmark-detection.streamlit.app/
