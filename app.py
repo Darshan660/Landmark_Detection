@@ -55,7 +55,11 @@ def image_processing(image):
     img = np.array(img) / 255.0
     img = img[np.newaxis]
     result = classifier.predict(img)
-    return labels[np.argmax(result)], img1
+    max_score = np.max(result)
+    if max_score < 0.5:  # set a threshold of 0.5 for the confidence score
+        return 'Not a landmark', img1
+    else:
+        return labels[np.argmax(result)], img1
 
 def get_map(loc):
     geolocator = Nominatim(user_agent="Your_Name")
