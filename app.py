@@ -9,7 +9,7 @@ import os
 import base64
 
 # --- GENERAL SETTINGS ---
-PAGE_TITLE = "Landmark Detection"
+PAGE_TITLE = "Asian Landmark Detection"
 PAGE_ICON = "https://www.gstatic.com/webp/gallery/2.jpg"
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
 
@@ -50,11 +50,12 @@ def image_processing(image):
         [hub.KerasLayer(model_url, input_shape=img_shape + (3,), output_key="predictions:logits")])
     img = PIL.Image.open(image)
     img = img.resize(img_shape)
+    img = img.convert('RGB')  # convert to 3-channel image
     img1 = img
     img = np.array(img) / 255.0
     img = img[np.newaxis]
     result = classifier.predict(img)
-    return labels[np.argmax(result)],img1
+    return labels[np.argmax(result)], img1
 
 def get_map(loc):
     geolocator = Nominatim(user_agent="Your_Name")
@@ -66,7 +67,7 @@ UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 def run():
-    st.title("Landmark Recognition")
+    st.title("Asian Landmark Recognition")
     img = PIL.Image.open('logo.png')
     img = img.resize((256,256))
     st.image(img)
@@ -80,6 +81,7 @@ def run():
             try:
                 prediction, image = image_processing(save_image_path)
                 st.image(image)
+                st.write('') # Top provide a gap
                 st.header("📍 **Predicted Landmark is: " + prediction + '**')
             except Exception as e:
                 st.warning(e)
@@ -88,6 +90,7 @@ def run():
             address, latitude, longitude = get_map(prediction)
             st.success('Address: '+address )
             loc_dict = {'Latitude':latitude,'Longitude':longitude}
+            st.write('') # Top provide a gap
             st.subheader('✅ **Latitude & Longitude of '+prediction+'**')
             st.json(loc_dict)
             data = [[latitude,longitude]]
